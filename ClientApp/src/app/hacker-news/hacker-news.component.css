@@ -1,0 +1,32 @@
+ul {
+  list-style-type: none;
+}
+
+li {
+  background-color: lightgray;
+}
+
+.title {
+  font-size: 20px;
+  padding-left: 15px;
+}
+
+.author {
+  font-size: 15px;
+  font-weight: bold;
+  padding-left: 30px;
+}
+
+.heading {
+  text-align: center;
+  font-size: 45px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+
+header {
+  text-align: center;
+  margin-bottom: 20px
+}

@@ -1,0 +1,18 @@
+<header>
+  <h2 class="heading">Hacker News Top Stories</h2>
+  <div>
+    <input type="text" placeholder="Search..." id="text-search" (keyup.enter)="search()"/>
+    <button id="button-search" (click)="search()">Search</button>
+  </div>
+</header>
+
+<ul>
+  <li *ngFor="let article of articles">
+    <a href="{{ article.url }}" target='_blank'>
+      <p>
+        <span class='title'>{{ article.title }}</span><br />
+        <span class='author'>{{ article.by }}</span>
+      </p>
+    </a>
+  </li>
+</ul>
