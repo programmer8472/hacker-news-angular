@@ -25,7 +25,8 @@ import { HackerNewsComponent } from './hacker-news/hacker-news.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', redirectTo: '/hacker-news', pathMatch: 'full' },
+      { path: '', component: HackerNewsComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'hacker-news', component: HackerNewsComponent },
