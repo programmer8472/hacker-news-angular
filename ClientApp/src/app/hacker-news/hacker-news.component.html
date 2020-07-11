@@ -7,7 +7,7 @@
 </header>
 
 <ul>
-  <li *ngFor="let article of articles">
+  <li *ngFor="let article of articles | paginate: { itemsPerPage: 10, currentPage: p }">
     <a href="{{ article.url }}" target='_blank'>
       <p>
         <span class='title'>{{ article.title }}</span><br />
@@ -16,3 +16,4 @@
     </a>
   </li>
 </ul>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
