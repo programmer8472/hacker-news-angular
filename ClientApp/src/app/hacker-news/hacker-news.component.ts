@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class HackerNewsComponent implements OnInit {
   //public forecasts: WeatherForecast[];
   //public articleIds: number[];
-  public articlesOriginal: Article[];
+  public articlesCached: Article[];
   public articles: Article[];
   public p: number = 1;
 
@@ -19,7 +19,7 @@ export class HackerNewsComponent implements OnInit {
 
   GetAllArticles(http: HttpClient, @Inject('BASE_URL') baseUrl: string): void {
     this.articles = [];
-    this.articlesOriginal = [];
+    this.articlesCached = [];
 
     http.get<number[]>(baseUrl + 'HackerNews').subscribe((results) => {
 
@@ -27,8 +27,10 @@ export class HackerNewsComponent implements OnInit {
 
         http.get<Article>(baseUrl + "HackerNews/ArticleDetail?id=" + element).subscribe(detail => {
 
-          this.articles.push(detail);
-          this.articlesOriginal.push(detail);
+          if (detail && detail.url && detail.url !== null && detail.url !== '') {
+            this.articles.push(detail);
+            this.articlesCached.push(detail);
+          }
 
         });
 
@@ -42,7 +44,7 @@ export class HackerNewsComponent implements OnInit {
 
 
   public search() {
-    this.articles = this.articlesOriginal;
+    this.articles = this.articlesCached;
     const searchText = ((document.getElementById("text-search") as HTMLInputElement).value);
     this.articles = this.articles.filter(article => {
       return article.title.includes(searchText);

@@ -22,13 +22,13 @@ namespace hacker_news_angular_v1.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<int> Get()
+        public async Task<IEnumerable<int>> Get()
         {
             try
             {
                 var client = new WebClient();
 
-                var articeIDsResponse = client.DownloadString("https://hacker-news.firebaseio.com/v0/newstories.json");
+                var articeIDsResponse = await client.DownloadStringTaskAsync("https://hacker-news.firebaseio.com/v0/newstories.json");
 
                 List<int> result = JsonConvert.DeserializeObject<List<int>>(articeIDsResponse);
 
@@ -36,6 +36,7 @@ namespace hacker_news_angular_v1.Controllers
             }
             catch
             {
+                _logger.LogError("Issue encountered getting a list of Hacker News stories IDs");
                 return null;
             }
         }
@@ -53,6 +54,7 @@ namespace hacker_news_angular_v1.Controllers
             }
             catch
             {
+                _logger.LogError("Issue encountered getting a list of Hacker News stories IDs");
                 return null;
             }
         }
